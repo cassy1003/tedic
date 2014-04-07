@@ -5,10 +5,11 @@
   "scripts": {
     "start": "node app.js"
   },
-  "dependencies": {
+  "devDependencies": {
     "express": "3.2.6",
     "jquery-deferred": "~0.3.0",
     "mongoose": "~3.8.8",
-    "ejs": "~0.8.5"
+    "ejs": "~0.8.5",
+    "request": "~2.34.0"
   }
 }
