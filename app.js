@@ -1,7 +1,6 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , posts = require('./posts')
   , http = require('http')
   , path = require('path');
 
