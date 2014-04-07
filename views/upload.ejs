@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/xhtml" xml:lang="ja" lang="ja">
+  <% include head.ejs %>
+  <body onLoad="setInstructorSelector()">
+    <div id="header" class="item-content">
+      <a href="<%= listUrl %>"><div class="float-left btn btn-info"><i class="icon-chevron-left icon-white"></i>List</div></a>
+      <div class="float-clear">Upload</div>
+    </div>
+    <hr />
+    <div id="upload" class="unit">
+      <form id="upload-form" method="post" action="/uploadData" onSubmit="return submitUploadForm(this)">
+        <fieldset>
+          <div class="field-group">
+            <label class="control-label" for="inputDate">Date: <span class="red">*</span></label>
+            <input type="text" name="date" placeholder="yyyy/mm/dd" required />
+          </div>
+          <div id="genreSelector" class="field-group">
+            <label class="control-label" for="selectGenre">Genre: <span class="red">*</span></label>
+            <select onChange="selectUploadGenre(this)" name="genre" required >
+              <% genres.forEach(function(genre){ %>
+              <option value="<%= genre.id %>"><%= genre.name %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div id="instructorSelector" class="field-group">
+            <label class="control-label" for="selectInstructor">Instructor: <span class="red">*</span></label>
+            <select onChange="selectUploadInstructor" name="instructor" required >
+            </select>
+            <% instructors.forEach(function(instructor){ %>
+            <div class="hide instructor-data" instructor="<%= instructor.name %>" genre="<%= instructor.genre %>" instructor_id="<%= instructor.id %>"></div>
+            <% }) %>
+          </div>
+          <div class="field-group">
+            <label class="control-label" for="inputYoutube">YouTube URL: <span class="red">*</span></label>
+            <input id="youtube-input" type="text" name="url" placeholder="YouTube URL or video id (v=***********)" required />
+            <iframe id="youtube-iframe" src="" style="display:none;" allowfullscreen></iframe>
+            <input id="hidden-youtube-data" type="hidden" name="youtube" />
+          </div>
+          <div class="field-group">
+            <label class="control-label" for="inputDescription">Description:</label>
+            <input type="text" name="description" placeholder="description" />
+          </div>
+          <div class="field-group">
+            <label class="control-label" for="inputUploader">Name:</label>
+            <input type="text" name="uploader" placeholder="name or nickname" />
+          </div>
+          <!--div class="field-group">
+            <label class="control-label" for="inputPassword">Password:</label>
+            <input type="text" name="password" placeholder="password for edit" />
+          </div-->
+          <div class="unit">
+            <input class="btn btn-primary btn-block" type="submit" value="upload">
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <% include foot.ejs %>
+    <script>
+      $('#youtube-input').bind('keyup textchange paste', inputYouTubeUrl);
+    </script>
+  </body>
+</html>
