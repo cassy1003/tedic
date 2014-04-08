@@ -2,6 +2,19 @@
 <html xmlns="http://www.w3.org/xhtml" xml:lang="ja" lang="ja">
   <% include head.ejs %>
   <body>
+    <p>id: <%= id %></p>
+    <p><%= enTitle.altheadline %></p>
+    <p><%= jaTitle.altheadline %></p>
+    <hr />
+    <p><%= enTitle.tagline %></p>
+    <p><%= jaTitle.tagline %></p>
+    <hr />
+    <p><%= enSubtitlesLeng %></p>
+    <p><%= jaSubtitlesLeng %></p>
+    <hr />
+    <% enSubtitles.forEach(function(subtitle){ %>
+      <p><%= subtitle.startTime %> - <%= subtitle.duration %>: <%= subtitle.content %></p>
+    <% }) %>
     <% include foot.ejs %>
   </body>
 </html>
